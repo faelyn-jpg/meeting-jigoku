@@ -1,0 +1,27 @@
+[
+  {
+    start: 6,
+    duration: 122,
+    appointee: 'Sam Cortinarius',
+    id: 'OCgkKmDEPSnOvSUU4KG-qA'
+  },
+  {
+    start: 137,
+    duration: 160,
+    appointee: 'Frank Boletus',
+    id: 'QaDAAkFlOxiex4TVlEZZ4A'
+  },
+  {
+    start: 337,
+    duration: 172,
+    appointee: 'Geastrum Robinson',
+    id: 'rWPdLvzfZSYL5Kz3a7rFTw'
+  },
+  {
+    start: 538,
+    duration: 116,
+    appointee: 'Saccharomyces Martinez',
+    id: 'IIOHZGGk53MI1TlHbtDwig'
+  }
+]
+score is 570

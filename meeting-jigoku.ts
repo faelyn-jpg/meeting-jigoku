@@ -1,29 +1,29 @@
 import { Invitation, TimeSlot } from './invitation'
 import invitations from './invitations.json'
+const { isRangeOverlap } = require('range-overlap')
 
 function planMyDay(invitations: Array<Invitation>): Array<Invitation> {
   const idArray: Array<string> = []
-  const confirmed = []
+  const confirmed: Array<Invitation> = []
   function sortByDescending(a: Invitation, b: Invitation) {
     return b.duration - a.duration
   }
   const sorted = invitations.toSorted(sortByDescending)
+
   function conflictsWithAny(invitation: Invitation) {
-    // console.log(invalidTimeslots.length + 'length')
-    for (let i = 0; i < sorted.length; i++) {
+    for (let i = 0; i < confirmed.length; i++) {
       const start = invitation.start
       const end = invitation.start + invitation.duration
-      const confirmingStart = sorted[i].start
-      const confirmingEnd = sorted[i].start + sorted[i].duration
-      if (
-        (start >= confirmingStart && start <= confirmingEnd) ||
-        (end >= confirmingStart && end <= confirmingEnd)
-      ) {
-        // return false
-        break
+      if (confirmed.length < 1) {
+        return true
       }
-      return false
+      const confirmedStart = confirmed[i].start
+      const confirmedEnd = confirmed[i].start + confirmed[i].duration
+      if (isRangeOverlap([start, end], [confirmedStart, confirmedEnd], true)) {
+        return false
+      }
     }
+
     return true
   }
 
@@ -32,6 +32,7 @@ function planMyDay(invitations: Array<Invitation>): Array<Invitation> {
       confirmed.push(unconfirmed)
     }
   }
+
   function byStartAscending(a: Invitation, b: Invitation) {
     return a.start - b.start
   }
@@ -40,8 +41,9 @@ function planMyDay(invitations: Array<Invitation>): Array<Invitation> {
   var score = schedule.reduce(function (prev, cur) {
     return prev + cur.duration
   }, 0)
-  console.log(score)
+
   console.log(schedule)
+  console.log('score is ' + score)
   return schedule
 }
 

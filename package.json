@@ -2,5 +2,8 @@
   "devDependencies": {
     "@types/node": "^22.15.29",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "range-overlap": "^1.0.0"
   }
 }
